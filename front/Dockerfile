@@ -27,4 +27,4 @@ RUN rm -rf /etc/nginx/conf.d
 COPY ./src/nginx/nginx.conf /etc/nginx/nginx.conf
 
 # Expose port 4200
-EXPOSE 4200
+EXPOSE 4200 49153

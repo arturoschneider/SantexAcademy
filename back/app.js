@@ -2,7 +2,7 @@ require('dotenv').config();
 
 // Express Dependencies:
 const express = require('express');
-// Sanitizacion XSS
+// Sanitizacion XSS. Sanitize HTML to prevent HTML attacks handling custom functions
 const xss = require('xss-clean');
 // Custom Dependencies:
 const passport = require('passport');
