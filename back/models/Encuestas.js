@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
         /*foreignKey:'id',        
         targetKey:'user_id'*/
       })
+
+      Encuestas.hasMany(models.Hogar, {
+        foreignKey:'id_encuestas'
+      })
     }
   };
   Encuestas.init({

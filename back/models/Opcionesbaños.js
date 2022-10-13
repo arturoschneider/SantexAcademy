@@ -17,6 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   OpcionesBaños.init({
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     opciones: DataTypes.STRING,
     value: DataTypes.BOOLEAN
   }, {

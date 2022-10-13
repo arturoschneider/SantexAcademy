@@ -1,6 +1,6 @@
 const instanciaProvider = require('../providers/instancia');
 
-//Todas las encuestas son llamas access:user
+//Todas las encuestas existentes access:admin
 async function allEncuesta(req, res, next) {
     try {
       const encuestas = await instanciaProvider.allEncuesta();
@@ -11,10 +11,8 @@ async function allEncuesta(req, res, next) {
 }
 
 //Busqueda de encuesta access:admin
-async function encuestaUser(req, res, next) {
+async function encuestasAdmin(req, res, next) {
     try {
-        /*const { user_id, cod_area, num_listado, fecha, num_vivienda, num_hogar } = req.body;
-        const userEncuesta = await instanciaProvider.busqueda(user_id, cod_area, num_listado, fecha, num_vivienda, num_hogar);*/
         const body = req.body
         const userEncuesta = await instanciaProvider.busqueda(body)
         res.json(userEncuesta);
@@ -23,8 +21,31 @@ async function encuestaUser(req, res, next) {
     }
 }
 
+async function allEncuestasUser(req, res, next) {
+    try {
+      const userData = await instanciaProvider.getOne({
+        user_id: req.body.id,
+      });
+      res.json(userData);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+async function example(req, res, next) {
+    try {
+        const body = req.body
+        const encuestasWithUsename = await instanciaProvider.exampleDev(body);
+        res.json(encuestasWithUsename);
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     allEncuesta,
-    encuestaUser
+    allEncuestasUser,
+    encuestasAdmin,
+    example
 };
 

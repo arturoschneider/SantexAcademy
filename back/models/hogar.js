@@ -12,11 +12,29 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Hogar.belongsTo(models.OpcionesBaños, {
-        foreignKey: 'baño_tipo'
+        foreignKey:'baño_tipo'
+      })
+
+      Hogar.belongsTo(models.OpcionesCocinas, {
+        foreignKey:'cocinar_pref'
+      })
+      
+      Hogar.belongsTo(models.OpcionesHogares, {
+        foreignKey:'este_hogar_es'
+      })
+
+      Hogar.belongsTo(models.Encuestas, {
+        foreignKey:'id_encuestas'
       })
     }
   };
   Hogar.init({
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
     id_encuestas: DataTypes.INTEGER,
     amb_excl_trabajo: DataTypes.BOOLEAN,
     amb_excl_trabajo_c: DataTypes.INTEGER,

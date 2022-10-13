@@ -5,18 +5,21 @@ require('../middleware/passport.middleware')(Passport);
 const encuestaModel = require('../models').Encuestas;
 const instanciaControllers = require('../controllers/instancia');
 
+//Busqueda de encuesta access:admin
+app.get('/busquedaEncuestas', instanciaControllers.encuestasAdmin)
+
+//Llamada a todas las encuestas access:admin
+app.get('/adminEncuestas', instanciaControllers.allEncuesta);
+
+//Llamada a todas las encuestas del usuario access:user
+app.get('/userEncuestas', instanciaControllers.allEncuestasUser)
+
+//Identificacion
 
 app.get('/', (req, res, next) => {
     res.send('hello word');
 });
 
-//Llamada a todas las encuestas access:admin
-app.get('/mostrarEncuestas', instanciaControllers.allEncuesta);
-
-//Llamada a todas las encuestas del usuario access:user
-
-//Busqueda de encuesta access:admin
-app.get('/userEncuesta', instanciaControllers.encuestaUser)
 
 app.post('/crearInstancia', (req, res, next) => {
     encuestaModel.create(req.body)
@@ -27,5 +30,7 @@ app.post('/crearInstancia', (req, res, next) => {
             res.json( {error: error} )
         })
 });
+
+app.post('/identificacion/hogares')
 
 module.exports = app;

@@ -9,7 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_encuestas: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model:'Encuestas',
+          key:'id_encuesta'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       },
       amb_excl_trabajo: {
         type: Sequelize.BOOLEAN
