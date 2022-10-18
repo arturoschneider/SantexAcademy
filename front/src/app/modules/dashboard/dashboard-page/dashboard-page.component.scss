@@ -1,4 +1,36 @@
+
 .expanded-toolbar {
   justify-content: space-between;
   align-items: center;
+}
+
+#form-container{
+  margin: 20px;
+  padding: 10px;
+}
+
+.picker {
+  padding: 10px;
+}
+
+#date-pick {
+  display: inline-block;
+  max-width: 33%;
+  padding-left: 5rem;
+  padding-top: 1rem;
+}
+
+
+.logo {
+  background-color: papayawhip;
+}
+.row{
+  display: flex;
+
+}
+.col, .col-3, .col-2, .col-1 {
+  border: 1px solid #888888;
+}
+.table {
+  margin:10px;
 }

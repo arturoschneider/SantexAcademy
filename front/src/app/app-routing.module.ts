@@ -15,6 +15,11 @@ const routes: Routes = [
     loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule),
   },
   {
+    path: 'nav-bar',
+    canActivate:[LoggedInGuard],
+    loadChildren: ()=> import('./modules/nav-bar/nav-bar.module').then(m => m.NavBarModule),
+  },
+  {
     path: 'profile',
     canActivate: [LoggedInGuard],
     loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule),

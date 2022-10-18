@@ -15,6 +15,10 @@ app.use('/ping', (req, res) => {
     response: 'pong!',
   });
 });
+
+app.use('/dashboard', (req, res) => {
+  
+})
 app.use('/users', userRoute);
 app.use('/', rootPath.handler);
 app.use(rootPath.setHeaders);

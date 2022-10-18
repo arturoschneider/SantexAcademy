@@ -1,0 +1,38 @@
+{
+  "encuestas":[
+    {
+      "id":1,
+      "encuestador": "Carlos",
+      "cod_area": 5014,
+      "fecha": "16-05-2022",
+      "n_listado": 0,
+      "n_vivienda": 0,
+      "n_hogar": 0,
+      "accion": {"editar": "Editar", "ver": "Ver"}
+    },
+
+    {
+      "id": 2,
+      "encuestador": "Artur",
+      "cod_area": 5000,
+      "fecha": "16-12-2022",
+      "n_listado": 1,
+      "n_vivienda": 1,
+      "n_hogar": 1,
+      "accion": ["editar/", " ver"]
+    },
+
+    {
+      "id": 3,
+      "encuestador": "Diego",
+      "cod_area": 5000,
+      "fecha": "16-02-2022",
+      "n_listado": 3,
+      "n_vivienda": 98,
+      "n_hogar": 1,
+      "accion": ["editar", "ver"]
+    }
+
+
+  ]
+}

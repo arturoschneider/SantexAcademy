@@ -1,4 +1,3 @@
-'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('hogars', {
@@ -6,40 +5,40 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       id_encuesta: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER,
       },
       cod_area: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER,
       },
       num_listado: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER,
       },
       fecha: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       num_vivienda: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER,
       },
       num_hogar: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER,
       },
       tipo_de_encuesta: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('hogars');
-  }
+  },
 };

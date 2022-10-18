@@ -1,59 +1,33 @@
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-  class encuestas extends Model {
+  class Encuestas extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      encuestas.belongsTo(models.user.models, {
-        foreignKey: 'username'
-      })
-    }
-  };
-module.exports = (sequelize, DataTypes) => {
-  const encuestas = sequelize.define('encuestas', {
+    
+  }
+  Encuestas.init({
     id_encuesta: {
-      type: DataTypes.INTEGER(16),
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
+      type: DataTypes.INTEGER,
     },
-
-    cod_area: {
-      type: DataTypes.INTEGER(2),
-      allowNull: false,
-      unique: false,
-    },
-    num_listado: {
-      type: DataTypes.INTEGER(),
-      allowNull: false,
-      unique: false,
-    },
-    fecha: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      unique: false,
-    },
-    num_vivienda: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
-      unique: true,
-    },
-    num_hogar: {
-      type: DataTypes.INTEGER(64),
-      allowNull: false,
-      unique: false,
-    },
-    tipo_de_encuesta: {
-      type: DataTypes.INTEGER(2),
-      allowNull: false,
-      unique: false,
-    },
+    user_id: DataTypes.INTEGER,
+    cod_area: DataTypes.INTEGER,
+    num_listado: DataTypes.INTEGER,
+    fecha: DataTypes.DATE,
+    num_vivienda: DataTypes.INTEGER,
+    num_hogar: DataTypes.INTEGER,
+    tipo_de_encuesta: DataTypes.INTEGER,
   }, {
     sequelize,
-    modelName: 'encuestas',
+    modelName: 'Encuestas',
   });
-  return encuestas;}
+  return Encuestas;
+};

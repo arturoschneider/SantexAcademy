@@ -8,25 +8,25 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       id_encuesta: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       cod_area: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       num_listado: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       fecha: {
         type: Sequelize.DATE,
       },
       num_vivienda: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       num_hogar: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       tipo_de_encuesta: {
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardRoutingModule } from './dashboard-routing.module';
+import { NavBarRoutingModule } from './nav-bar-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
@@ -18,16 +18,12 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { NavBarModule } from '../nav-bar/nav-bar.module';
-import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
-  declarations: [DashboardPageComponent],
+  declarations: [NavBarComponent],
   imports: [
     CommonModule,
-    NavBarModule,
-    DashboardRoutingModule,
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
@@ -49,11 +45,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    HttpClientModule
+    NavBarRoutingModule
   ],
   exports: [
-    DashboardPageComponent
+    NavBarComponent,
   ],
   providers: [],
 })
-export class DashboardModule {}
+export class NavBarModule {
+
+ }
