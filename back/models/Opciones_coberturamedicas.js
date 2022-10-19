@@ -2,8 +2,9 @@
 const {
   Model
 } = require('sequelize');
+const caract_miembros_hogares = require('./caract_miembros_hogares');
 module.exports = (sequelize, DataTypes) => {
-  class Modelo extends Model {
+  class Opciones_coberturamedicas extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,21 +12,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Opciones_coberturamedicas.hasMany(models.Caract_miembros_hogares, {
+        foreignKey: 'cobertura_medica'
+      })
     }
   };
-  Modelo.init({
+  Opciones_coberturamedicas.init({
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING
+    opciones: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Modelo',
+    modelName: 'Opciones_coberturamedicas',
   });
-  return Modelo;
+  return Opciones_coberturamedicas;
 };

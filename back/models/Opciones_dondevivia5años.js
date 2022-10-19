@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Modelo extends Model {
+  class Opciones_dondevivia5años extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,21 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Opciones_dondevivia5años.hasMany(models.Caract_miembros_hogares, {
+        foreignKey: 'donde_vivia_5años'
+      })
     }
   };
-  Modelo.init({
+  Opciones_dondevivia5años.init({
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING
+    opciones: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Modelo',
+    modelName: 'Opciones_dondevivia5años',
   });
-  return Modelo;
+  return Opciones_dondevivia5años;
 };

@@ -16,9 +16,14 @@ async function exampleDev(data) {
     return instanciaService.exampleDev(data, {exclude: ['tipo_de_encuesta', 'updatedAt', 'createdAt'] });
 }
 
+async function newEncuesta(data) {
+    return instanciaService.encuestaCreate(data);
+}
+
 module.exports = {
     allEncuesta,
     busqueda,
     exampleDev,
-    getOne
+    getOne,
+    newEncuesta
 };

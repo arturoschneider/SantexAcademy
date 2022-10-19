@@ -21,7 +21,18 @@ async function oneUser(req, res, next) {
   }
 }
 
+async function createUser(req, res, next) {
+  try {
+    const body = req.body
+    const user = await usuarioProviders.createUs(body);
+    res.json(user);
+  } catch (error) {
+  next(error);
+  }
+}
+
 module.exports = {
     allUsuarios,
-    oneUser
+    oneUser,
+    createUser
 }

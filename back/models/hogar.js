@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Hogar.hasMany(models.Caract_miembros_hogares, {
+        foreignKey: 'hogar_id'
+      })
+
       Hogar.belongsTo(models.OpcionesBaños, {
         foreignKey:'baño_tipo'
       })
@@ -24,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       })
 
       Hogar.belongsTo(models.Encuestas, {
-        foreignKey:'id_encuestas'
+        foreignKey:'id_encuesta'
       })
     }
   };
@@ -35,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    id_encuestas: DataTypes.INTEGER,
+    id_encuesta: DataTypes.INTEGER,
     amb_excl_trabajo: DataTypes.BOOLEAN,
     amb_excl_trabajo_c: DataTypes.INTEGER,
     tiene_ademas_cocina: DataTypes.BOOLEAN,
@@ -47,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     tiene_ademas_trabaj_c: DataTypes.INTEGER,
     este_hogar_es: DataTypes.INTEGER,
     cocinar_pref: DataTypes.INTEGER,
-    baño_tipo: DataTypes.INTEGER
+    baño_tipo: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Hogar',

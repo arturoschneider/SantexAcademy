@@ -2,11 +2,12 @@ const Express = require('express');
 const app = Express();
 const Passport = require('passport');
 require('../middleware/passport.middleware')(Passport);
-const encuestaModel = require('../models').Encuestas;
 const instanciaControllers = require('../controllers/instancia');
+const instanciaValidator = require('../middleware/validations/instancia/instancias.middeware');
+const hogarValidator = require('../middleware/validations/instancia/fomHogar.middleware');
 
 //Busqueda de encuesta access:admin
-app.get('/busquedaEncuestas', instanciaControllers.encuestasAdmin)
+app.get('/busquedaEncuestas',instanciaControllers.encuestasAdmin)
 
 //Llamada a todas las encuestas access:admin
 app.get('/adminEncuestas', instanciaControllers.allEncuesta);
@@ -14,23 +15,12 @@ app.get('/adminEncuestas', instanciaControllers.allEncuesta);
 //Llamada a todas las encuestas del usuario access:user
 app.get('/userEncuestas', instanciaControllers.allEncuestasUser)
 
-//Identificacion
+//crear nueva encuesta (duda: agregar tambien form o no)
+app.post('/crearInstancia', instanciaControllers.newEncuesta);
 
-app.get('/', (req, res, next) => {
-    res.send('hello word');
+//test
+app.get('/dev', hogarValidator.newhogar, (req, res, next) => {
+    console.log('datos validos')
 });
-
-
-app.post('/crearInstancia', (req, res, next) => {
-    encuestaModel.create(req.body)
-        .then( (data) => {
-            res.json( {dato:data} )
-        })
-        .catch( (error) => {
-            res.json( {error: error} )
-        })
-});
-
-app.post('/identificacion/hogares')
 
 module.exports = app;

@@ -30,7 +30,17 @@ async function allEncuestasUser(req, res, next) {
     } catch (error) {
       next(error);
     }
+}
+
+async function newEncuesta(req, res, next) {
+  try {
+    const body = req.body
+    const encuesta = await instanciaProvider.newEncuesta(body);
+    res.json(encuesta);
+  } catch (error) {
+    next(error);
   }
+}
 
 async function example(req, res, next) {
     try {
@@ -46,6 +56,7 @@ module.exports = {
     allEncuesta,
     allEncuestasUser,
     encuestasAdmin,
-    example
+    example,
+    newEncuesta
 };
 
