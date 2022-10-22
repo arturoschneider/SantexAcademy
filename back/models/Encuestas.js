@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'user_id'
       })
 
-      Encuestas.hasOne(models.Hogar, {
-        foreignKey:'id_encuesta'
+      Encuestas.hasOne(models.Hogares, {
+        foreignKey:'id_encuestas'
       });
     }
   };
@@ -37,7 +37,11 @@ module.exports = (sequelize, DataTypes) => {
     fecha: DataTypes.DATE,
     num_vivienda: DataTypes.INTEGER,
     num_hogar: DataTypes.INTEGER,
-    tipo_de_encuesta: DataTypes.INTEGER
+    tipo_de_encuesta: DataTypes.INTEGER,
+    respondiente: {
+      allowNull: false,
+      type: DataTypes.STRING
+    }
   }, {
     sequelize,
     modelName: 'Encuestas',

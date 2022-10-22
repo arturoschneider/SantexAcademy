@@ -10,7 +10,7 @@ module.exports = {
       lastname: 'Vaca',
       email: 'example1@hotmail.com',
       phone_number: '3514689203',
-      rol: 0,
+      rol: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
     },

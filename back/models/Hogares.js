@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Hogar extends Model {
+  class Hogares extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,35 +11,39 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Hogar.hasMany(models.Caract_miembros_hogares, {
+      Hogares.hasMany(models.Caract_miembros_hogares, {
         foreignKey: 'hogar_id'
       })
 
-      Hogar.belongsTo(models.OpcionesBaños, {
+      Hogares.hasOne(models.Estrategia_hogares, {
+        foreignKey:'hogar_id'
+      })
+
+      Hogares.belongsTo(models.OpcionesBaños, {
         foreignKey:'baño_tipo'
       })
 
-      Hogar.belongsTo(models.OpcionesCocinas, {
+      Hogares.belongsTo(models.OpcionesCocinas, {
         foreignKey:'cocinar_pref'
       })
       
-      Hogar.belongsTo(models.OpcionesHogares, {
+      Hogares.belongsTo(models.OpcionesHogares, {
         foreignKey:'este_hogar_es'
       })
 
-      Hogar.belongsTo(models.Encuestas, {
-        foreignKey:'id_encuesta'
+      Hogares.belongsTo(models.Encuestas, {
+        foreignKey:'id_encuestas'
       })
     }
   };
-  Hogar.init({
+  Hogares.init({
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    id_encuesta: DataTypes.INTEGER,
+    id_encuestas: DataTypes.INTEGER,
     amb_excl_trabajo: DataTypes.BOOLEAN,
     amb_excl_trabajo_c: DataTypes.INTEGER,
     tiene_ademas_cocina: DataTypes.BOOLEAN,
@@ -54,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
     baño_tipo: DataTypes.INTEGER,
   }, {
     sequelize,
-    modelName: 'Hogar',
+    modelName: 'Hogares',
   });
-  return Hogar;
+  return Hogares;
 };

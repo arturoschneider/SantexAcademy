@@ -7,16 +7,30 @@ const instanciaValidator = require('../middleware/validations/instancia/instanci
 const hogarValidator = require('../middleware/validations/instancia/fomHogar.middleware');
 
 //Busqueda de encuesta access:admin
-app.get('/busquedaEncuestas',instanciaControllers.encuestasAdmin)
+app.get('/busquedaEncuestas',[
+    Passport.authenticate('jwt', { session: false }),
+  ],instanciaControllers.encuestasAdmin)
 
-//Llamada a todas las encuestas access:admin
-app.get('/adminEncuestas', instanciaControllers.allEncuesta);
 
-//Llamada a todas las encuestas del usuario access:user
+//Llamada a todas las encuestas admin:true (trae todas las encuestas), admin:false(trae las encuestas del usuario logeado)
+app.get('/adminEncuestas', [
+    Passport.authenticate('jwt', { session: false }),
+  ], instanciaControllers.allEncuesta);
+
+
+//Llamada a todas las encuestas del usuario access:user (en desuso 22/10/2022)
 app.get('/userEncuestas', instanciaControllers.allEncuestasUser)
 
+
 //crear nueva encuesta (duda: agregar tambien form o no)
-app.post('/crearInstancia', instanciaControllers.newEncuesta);
+app.post('/crearInstancia', [
+    Passport.authenticate('jwt', { session: false }),
+  ], instanciaControllers.newEncuesta);
+
+
+//crear formulario Hogar con id_encuesta uno a uno
+app.post('/creaIntancia/hogar', instanciaControllers.newHogar)
+
 
 //test
 app.get('/dev', hogarValidator.newhogar, (req, res, next) => {

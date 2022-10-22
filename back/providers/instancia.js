@@ -1,7 +1,7 @@
 const instanciaService = require('../services/instancia');
 
-async function allEncuesta() {
-    return instanciaService.findAll({exclude: ['tipo_de_encuesta', 'updatedAt', 'createdAt'] });
+async function allEncuesta(data) {
+    return instanciaService.findAll(data, { exclude: ['password'] });
 }
 
 async function busqueda(data) {
@@ -17,7 +17,11 @@ async function exampleDev(data) {
 }
 
 async function newEncuesta(data) {
-    return instanciaService.encuestaCreate(data);
+    return instanciaService.encuestaCreate(data, { exclude: ['password'] });
+}
+
+async function newHogar(data) {
+    return instanciaService.hogarCreate(data);
 }
 
 module.exports = {
@@ -25,5 +29,6 @@ module.exports = {
     busqueda,
     exampleDev,
     getOne,
-    newEncuesta
+    newEncuesta,
+    newHogar
 };
