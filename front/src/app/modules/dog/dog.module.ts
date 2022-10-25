@@ -13,6 +13,7 @@ import { DashboardModule } from '../dashboard/dashboard.module';
 import { DogRoutingModule } from './dog-routing.module';
 
 import { NewDogPageComponent } from './new-dog-page/new-dog-page.component';
+import { NavBarModule } from '../nav-bar/nav-bar.module';
 
 @NgModule({
   declarations: [NewDogPageComponent],
@@ -21,6 +22,7 @@ import { NewDogPageComponent } from './new-dog-page/new-dog-page.component';
     DogRoutingModule,
     ReactiveFormsModule,
     DashboardModule,
+    NavBarModule,
     MatInputModule,
     MatFormFieldModule,
     MatDatepickerModule,

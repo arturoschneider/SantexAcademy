@@ -16,11 +16,18 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { NavBarModule } from '../nav-bar/nav-bar.module';
+import { HttpClientModule } from '@angular/common/http';
+import { EncuestaService } from 'src/app/core/services/encuesta/encuesta.service';
+
 
 @NgModule({
   declarations: [DashboardPageComponent],
   imports: [
     CommonModule,
+    NavBarModule,
     DashboardRoutingModule,
     MatInputModule,
     MatButtonModule,
@@ -41,6 +48,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSelectModule,
     MatOptionModule,
     MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    HttpClientModule
   ],
   exports: [
     DashboardPageComponent

@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Encuestas extends Model {
     /**
@@ -11,25 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      /*Encuestas.belongsTo(models.Modelo, {
+      /* Encuestas.belongsTo(models.Modelo, {
         foreignKey:'user_id'
-      })*/
+      }) */
 
       Encuestas.belongsTo(models.user, {
-        foreignKey: 'user_id'
-      })
+        foreignKey: 'user_id',
+      });
 
       Encuestas.hasOne(models.Hogares, {
-        foreignKey:'id_encuestas'
+        foreignKey: 'id_encuestas',
       });
     }
-  };
+  }
   Encuestas.init({
     id_encuesta: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     user_id: DataTypes.INTEGER,
     cod_area: DataTypes.INTEGER,
@@ -39,9 +39,9 @@ module.exports = (sequelize, DataTypes) => {
     num_hogar: DataTypes.INTEGER,
     tipo_de_encuesta: DataTypes.INTEGER,
     respondiente: {
-      allowNull: false,
-      type: DataTypes.STRING
-    }
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
   }, {
     sequelize,
     modelName: 'Encuestas',

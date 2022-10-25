@@ -1,21 +1,89 @@
-<mat-toolbar color="primary" class="expanded-toolbar">
-  <span>
-    <button mat-button routerLink="/">Jesus Maria Boilerplate</button>
-    <button mat-button routerLink="/profile"><mat-icon>person</mat-icon></button>
-    <button mat-button routerLink="/dog"><mat-icon>pets</mat-icon></button>
-    <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
-  </span>
-  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-    <button mat-button (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon>
-      Logout
-    </button>
-  </div>
-</mat-toolbar>
-<mat-menu x-position="before" #menu="matMenu">
-  <button mat-menu-item (click)="logout()">
-    <mat-icon>exit_to_app</mat-icon>
-    Logout
-  </button>
-</mat-menu>
+<app-nav-bar></app-nav-bar>
+<div id= "form-container">
+  <form class="row g-3 needs-validation" novalidate>
+    <div class="col-md-4" id="date--">
+      <label for="validationCustom01" class="form-label">Nº de encuestador</label>
+      <input type="text" class="form-control" name="encuestador" [(ngModel)]="encuestador" (ngModelChange)="Search()">
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div id= "date-pick">
+      <mat-form-field appearance="fill">
+        <mat-label>Buscar entre fechas</mat-label>
+        <mat-date-range-input [rangePicker]="picker" >
+          <input matStartDate placeholder="Desde" >
+          <input matEndDate placeholder="Hasta" >
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+
+
+    <div class="col-md-6">
+      <label for="validationCustom03" class="form-label">Nº de vivienda</label>
+      <input type="text" class="form-control" name="n_vivienda" placeholder="Introduzca Nº de vivienda" [(ngModel)]="n_vivienda" (ngModelChange)="searchVivienda()">
+      <div class="invalid-feedback">
+        Por favor ingrese un Nº de vivienda válido.
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label for="validationCustom05" class="form-label">Nº de hogar</label>
+      <input type="number" class="form-control" id="validationCustom05" placeholder="Introduzca Nº de hogar" required>
+      <div class="invalid-feedback">
+        Por favor ingrese un Nº de hogar válido.
+      </div>
+    </div>
+    <!--<div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+        <label class="form-check-label" for="invalidCheck">
+          Agree to terms and conditions
+        </label>
+        <div class="invalid-feedback">
+          You must agree before submitting.
+        </div>
+      </div>
+    </div-->
+    <div class="col-12">
+      <button (click)="onSubmit()" class="btn btn-primary" type="submit">Buscar encuesta</button>
+    </div>
+  </form>
+
+</div>
+
+<div >
+  <nav class="navbar">
+
+  </nav>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>ID</td>
+      <td>Encuestador</td>
+      <td>Cod Área</td>
+      <td>Nº en listado</td>
+      <td>Fecha</td>
+      <td>Nº Vivienda</td>
+      <td>Nº Hogar</td>
+      <td>ACCIÓN</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let encuesta of encuestas">
+      <td>{{encuesta.id_encuesta}}</td>
+      <td>{{encuesta.user.name + ' ' + encuesta.user.lastname}}</td>
+      <td>{{encuesta.cod_area}}</td>
+      <td>{{encuesta.num_listado}}</td>
+      <td>{{encuesta.fecha | date:'dd/MM/yyyy'}}</td>
+      <td>{{encuesta.num_vivienda}}</td>
+      <td>{{encuesta.num_hogar}}</td>
+      <td><a href="">{{encuesta.accion}}</a></td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
 <router-outlet></router-outlet>
