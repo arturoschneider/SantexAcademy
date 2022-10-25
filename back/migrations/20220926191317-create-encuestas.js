@@ -44,7 +44,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       respondiente: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.STRING
       }
     });

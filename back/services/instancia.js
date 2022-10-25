@@ -25,7 +25,7 @@ async function findAll(data, attributes = null) {
 
     encuestas.forEach(x => {
     arrayEncuesta.push({
-      id:x.id,
+      id:x.id_encuesta,
       encuestador: x.user.name + ' ' + x.user.lastname,
       cod_area: x.cod_area,
       num_listado: x.num_listado,
@@ -54,7 +54,7 @@ async function findAll(data, attributes = null) {
 
     encuestas.forEach(x => {
     arrayEncuesta.push({
-      id:x.id,
+      id:x.id_encuesta,
       encuestador: x.user.name + ' ' + x.user.lastname,
       cod_area: x.cod_area,
       num_listado: x.num_listado,
@@ -196,7 +196,6 @@ async function encuestaCreate(data, attributes = null) {
 
   console.log(newEncuesta)
   encuestaModel.create(newEncuesta)
-
 }
 
 //Crear nuevo form Hogar

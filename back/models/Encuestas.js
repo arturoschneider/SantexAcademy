@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     num_hogar: DataTypes.INTEGER,
     tipo_de_encuesta: DataTypes.INTEGER,
     respondiente: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.STRING
     }
   }, {

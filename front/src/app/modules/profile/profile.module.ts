@@ -10,11 +10,13 @@ import { ViewProfilePageComponent } from './view-profile-page/view-profile-page.
 
 import { UserService } from 'src/app/core/services/user/user.service';
 import { DashboardModule } from '../dashboard/dashboard.module';
+import { NavBarModule } from '../nav-bar/nav-bar.module';
 
 @NgModule({
   declarations: [ViewProfilePageComponent],
   imports: [
     CommonModule,
+    NavBarModule,
     ProfileRoutingModule,
     DashboardModule,
     MatCardModule,

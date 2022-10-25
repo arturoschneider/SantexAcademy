@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
+import { EncuestaService } from 'src/app/core/services/encuesta/encuesta.service'
 
 @Component({
   selector: 'app-new-dog',
@@ -8,26 +9,40 @@ import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/for
   styleUrls: ['./new-dog-page.component.scss']
 })
 export class NewDogPageComponent {
-  public form = this.formBuilder.group({});
-  public razas = [
-    {
-        id: 1, nombre: 'Chiguagua'
-    },
-    {
-        id: 2, nombre: 'Caniche'
-    }
-  ];
+  public NuevaEncuestaForm = this.formBuilder.group({});
+  public tipoEncuesta = [];
 
-  constructor(private formBuilder: UntypedFormBuilder, private datePipe: DatePipe) {}
+
+  constructor(private formBuilder: UntypedFormBuilder, private datePipe: DatePipe,
+    public encuestaService: EncuestaService,) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      name: new UntypedFormControl(null, Validators.compose([Validators.required])),
-      birthDate: new UntypedFormControl(
+    this.NuevaEncuestaForm = this.formBuilder.group({
+      cod_area: new UntypedFormControl(
+        null,
+        Validators.compose([Validators.required])),
+
+      num_listado: new UntypedFormControl(
         null,
         Validators.compose([Validators.required])
       ),
-      raza: new UntypedFormControl(
+
+      fecha: new UntypedFormControl(
+        null,
+        Validators.compose([Validators.required])
+        ),
+
+      num_vivienda: new UntypedFormControl(
+        null,
+        Validators.compose([Validators.required])
+      ),
+
+      num_hogar: new UntypedFormControl(
+        null,
+        Validators.compose([Validators.required])
+      ),
+
+      respondiente: new UntypedFormControl(
         null,
         Validators.compose([Validators.required])
       ),
@@ -35,9 +50,12 @@ export class NewDogPageComponent {
   }
 
   onSubmit() {
-    if (this.form.valid) {
-        const value = this.form.value;
-        value.birthDate = this.datePipe.transform(value.birthDate, 'dd-MM-yyyy HH:mm');
+    if (this.NuevaEncuestaForm.valid) {
+        const value = this.NuevaEncuestaForm.value;
+        //value.Date = this.datePipe.transform(value.Date, 'dd-MM-yyyy HH:mm');
+      this.encuestaService.createEncuestas('http://localhost:4001/instancia/crearInstancia', value).subscribe((res)=> {
+        console.log('Encuesta creada')
+    })
     }
   }
 }
