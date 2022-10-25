@@ -25,7 +25,7 @@ async function findAll(data, attributes = null) {
 
     encuestas.forEach(x => {
     arrayEncuesta.push({
-      id:x.id,
+      id:x.id_encuesta,
       encuestador: x.user.name + ' ' + x.user.lastname,
       cod_area: x.cod_area,
       num_listado: x.num_listado,
@@ -54,7 +54,7 @@ async function findAll(data, attributes = null) {
 
     encuestas.forEach(x => {
     arrayEncuesta.push({
-      id:x.id,
+      id:x.id_encuesta,
       encuestador: x.user.name + ' ' + x.user.lastname,
       cod_area: x.cod_area,
       num_listado: x.num_listado,
@@ -171,8 +171,8 @@ async function encuestaCreate(data, attributes = null) {
 
   const user = await userModel.findOne({ where: data.id, attributes });
 
-  console.log(0)
-  console.log(user)
+  //console.log(0)
+  //console.log(user)
   
   const x = {
     id:user.id,
@@ -181,8 +181,8 @@ async function encuestaCreate(data, attributes = null) {
     email:user.email
   }
 
-  console.log(1)
-  console.log(x)
+  //console.log(1)
+  //console.log(x)
 
   const newEncuesta = {
     user_id:x.id,
@@ -195,7 +195,11 @@ async function encuestaCreate(data, attributes = null) {
   }
 
   console.log(newEncuesta)
-  encuestaModel.create(newEncuesta)
+  const instancia = await encuestaModel.create(newEncuesta)
+
+  console.log(instancia.id_encuesta)
+
+  return instancia.id_encuesta
 
 }
 
@@ -203,13 +207,13 @@ async function encuestaCreate(data, attributes = null) {
 async function hogarCreate(data) {
   const encuesta = await encuestaModel.findOne( { 
     where: {
-      id_encuesta: data.id_encuestas
+      id_encuesta: data.id_encuesta
     }
   } );
 
   if(encuesta) {
     const formulario = {
-      id_encuestas: data.id_encuestas,
+      id_encuestas: data.id_encuesta,
       amb_excl_trabajo: data.amb_excl_trabajo,
       amb_excl_trabajo_c: data.amb_excl_trabajo_c,
       tiene_ademas_cocina: data.tiene_ademas_cocina,
@@ -225,7 +229,7 @@ async function hogarCreate(data) {
     }
     const hogares = await hogarModel.findOne( { 
       where: {
-        id_encuestas: data.id_encuestas
+        id_encuestas: data.id_encuesta
       }
     } );
 
@@ -241,7 +245,7 @@ async function hogarCreate(data) {
         tipo_de_encuesta: "2",
       }, {
         where: {
-          id_encuesta: data.id_encuestas,
+          id_encuesta: data.id_encuesta,
         }
       });
 

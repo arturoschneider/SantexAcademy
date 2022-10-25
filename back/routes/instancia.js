@@ -29,7 +29,9 @@ app.post('/crearInstancia', [
 
 
 //crear formulario Hogar con id_encuesta uno a uno
-app.post('/creaIntancia/hogar', instanciaControllers.newHogar)
+app.post('/creaIntancia/hogar',[
+  Passport.authenticate('jwt', { session: false }),
+], instanciaControllers.newHogar)
 
 
 //test
