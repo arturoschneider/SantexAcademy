@@ -1,3 +1,13 @@
+<mat-toolbar color="primary" class="expanded-toolbar">
+  <span>
+    <img class= "logo" src="https://www.jesusmaria.gov.ar/frontend/images/white-logo.svg" alt>
+    <button mat-button routerLink="/">EPH Jesús María</button>
+  </span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+  </div>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+</mat-menu>
 <mat-card class="my-card">
   <mat-card-content>
     <form [formGroup]="registerForm" (onSubmit)="register()">
