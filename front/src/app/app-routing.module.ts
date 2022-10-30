@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoggedInGuard } from './core/guards/login/loggedin/loggedin.guard';
 import { NotLoggedInGuard } from './core/guards/login/notloggedin/notloggedin.guard';
+import { EncuestasModule } from './modules/encuestas/encuestas.module';
 
 const routes: Routes = [
   {
@@ -25,9 +26,19 @@ const routes: Routes = [
     loadChildren: () => import('./modules/profile/profile.module').then(m => m.ProfileModule),
   },
   {
-    path: 'dog',
+    path: 'nuevaEncuesta',
     canActivate: [LoggedInGuard],
     loadChildren: () => import('./modules/dog/dog.module').then(m => m.DogModule),
+  },
+  {
+    path: 'form',
+    canActivate: [LoggedInGuard],
+    loadChildren: () => import('./modules/form/form.module').then(m => m.FormModule),
+  },
+  {
+    path:'encuesta',
+    canActivate: [LoggedInGuard],
+    loadChildren:()=> import('./modules/encuestas/encuestas.module').then(m=> m.EncuestasModule),
   },
   {
     path: '**',

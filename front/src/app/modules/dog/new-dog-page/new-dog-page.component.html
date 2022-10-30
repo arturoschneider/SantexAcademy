@@ -10,7 +10,7 @@
       <mat-form-field class="full-width-input">
         <input type= "number" matInput placeholder="Nº de Listado" formControlName="num_listado" />
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <mat-form-field appearance="standard">
         <mat-label>Fecha</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="fecha" />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -27,23 +27,17 @@
       </mat-form-field>
 
 
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="onSubmit()"
-        [disabled]="NuevaEncuestaForm.invalid"
-      >
-        Anterior
-      </button>
-      <button
-        mat-raised-button
-        color="primary"
+      <button class="crearEncuesta"
+        mat-raised-button routerLink="/form"
+        color="primary-color"
         (click)="onSubmit()"
         [disabled]="NuevaEncuestaForm.invalid"
       >
         Siguiente
       </button>
+
     </form>
-    <pre>{{NuevaEncuestaForm.value | json }}</pre>
+    <!--pre>{{NuevaEncuestaForm.value | json }}</pre-->
   </mat-card-content>
 </mat-card>
+<router-outlet></router-outlet>

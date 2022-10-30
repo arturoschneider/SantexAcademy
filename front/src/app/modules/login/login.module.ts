@@ -19,6 +19,7 @@ import { LoginRoutingModule } from './login-routing.module';
 
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
+import { NavBarModule } from '../nav-bar/nav-bar.module';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { RegisterPageComponent } from './register-page/register-page.component';
     MatSelectModule,
     MatOptionModule,
     MatProgressSpinnerModule,
+    NavBarModule
   ],
   providers: []
 })

@@ -1,6 +1,7 @@
-import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
+
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -9,33 +10,26 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DashboardModule } from '../dashboard/dashboard.module';
-import { DogRoutingModule } from './dog-routing.module';
+import { DogRoutingModule } from '../dog/dog-routing.module';
 
-import { NewDogPageComponent } from './new-dog-page/new-dog-page.component';
+import { NewDogPageComponent } from '../dog/new-dog-page/new-dog-page.component';
 import { NavBarModule } from '../nav-bar/nav-bar.module';
-import { FormModule } from '../form/form.module';
+import { FormComponent } from './form-page/form.component';
+import { LoginModule } from '../login/login.module';
+import { FormRoutingModule } from './form-routing.module';
 
 
 @NgModule({
-  declarations: [NewDogPageComponent],
+  declarations: [
+    FormComponent
+  ],
   imports: [
     CommonModule,
-    DogRoutingModule,
-    ReactiveFormsModule,
-    DashboardModule,
     NavBarModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatButtonModule,
-    MatCardModule,
-    MatSelectModule,
-    FormModule
+    FormRoutingModule
   ],
-  providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
-    DatePipe
-  ],
+  exports: [
+    FormComponent,
+  ]
 })
-export class DogModule {}
+export class FormModule {}

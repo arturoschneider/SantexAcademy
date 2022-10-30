@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { EncuestaService } from 'src/app/core/services/encuesta/encuesta.service';
 import { Encuestas } from 'src/app/core/interfaces/encuestas/encuestas';
@@ -10,22 +11,23 @@ import { UsersService } from 'src/app/core/services/user/users.service';
 import { Users} from 'src/app/core/interfaces/encuestas/user';
 
 
+
 @Component({
   selector: 'app-dashboard-page',
   templateUrl: './dashboard-page.component.html',
   styleUrls: ['./dashboard-page.component.scss'],
 })
 export class DashboardPageComponent implements OnInit{
-  declare form : FormGroup;
-
+  public search = this.formBuilder.group({});
   encuestas: Encuestas [] = [];
   authService: any;
   encuestador: any;
   n_vivienda:any;
   constructor (
     public encuestaService:EncuestaService,
+
     public userService: UsersService,
-    private fb: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
     private http:HttpClient,
     ){
       //JSON.stringify() LOCAL Storage
@@ -37,29 +39,46 @@ export class DashboardPageComponent implements OnInit{
   onSubmit() {
 
   }
+
   ngOnInit():void {
     // Servicio para traer las encuestas del encuestador o todas las encuestas si el user es admin
     this.encuestaService.getEncuestas().subscribe((response)=>{
       this.encuestas = response;
       console.log(response);
     })
+
+    this.search = this.formBuilder.group({
+      encuestador: new UntypedFormControl(
+        null,
+        Validators.compose([Validators.required])
+      ),
+      fecha: new UntypedFormControl(
+        null,
+        Validators.compose([Validators.required])
+        ),
+
+      num_vivienda: new UntypedFormControl(
+        null,
+        Validators.compose([Validators.required])
+      ),
+
+      num_hogar: new UntypedFormControl(
+        null,
+        Validators.compose([Validators.required])
+      ),
+    });
   }
+
+
   Search() {
-    if (this.encuestador == ""){
-      this.ngOnInit();
-    }else {
-      this.encuestas= this.encuestas.filter(res => {
-        return //res.user.toLocaleLowerCase().match(this.encuestador.toLocaleLowerCase())
-      })
-    }
+    if (this.search.valid) {
+      const value = this.search.value;
+
+    this.encuestaService.busquedaEncuesta('http://localhost:4001/instancia/busquedaEncuestas', value).subscribe((res)=> {
+      this.encuestas = res;
+      console.log('Encuesta buscada');
+      console.log(res);
+
+    })
   }
-  searchVivienda(){
-    if (this.n_vivienda == ""){
-      this.ngOnInit();
-    }else{
-      this.encuestas = this.encuestas.filter(res=> {
-        return res.num_vivienda
-      })
-    }
-  }
-}
+}}

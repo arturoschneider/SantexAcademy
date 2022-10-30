@@ -54,7 +54,8 @@ export class NewDogPageComponent {
         const value = this.NuevaEncuestaForm.value;
         //value.Date = this.datePipe.transform(value.Date, 'dd-MM-yyyy HH:mm');
       this.encuestaService.createEncuestas('http://localhost:4001/instancia/crearInstancia', value).subscribe((res)=> {
-        console.log('Encuesta creada')
+        console.log('Encuesta creada');
+        console.log(res);
     })
     }
   }

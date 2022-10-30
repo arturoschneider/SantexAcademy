@@ -1,8 +1,8 @@
 <app-nav-bar></app-nav-bar>
-<div id= "form-container">
+<!--div id= "form-container">
   <form class="row g-3 needs-validation" novalidate>
     <div class="col-md-4" id="date--">
-      <label for="validationCustom01" class="form-label">Nº de encuestador</label>
+      <label for="validationCustom01" class="form-label">Nombre de encuestador</label>
       <input type="text" class="form-control" name="encuestador" [(ngModel)]="encuestador" (ngModelChange)="Search()">
       <div class="valid-feedback">
         Looks good!
@@ -19,10 +19,36 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
       </mat-form-field>
-    </div>
+    </div-->
+    <div>
+    <form [formGroup]="search" class="row g-3 needs-validation" novalidate>
+      <h2></h2>
+      <div class="col-md-4">
+        <mat-form-field >
+          <input type="text" matInput placeholder="Nombre Encuestador" formControlName="encuestador" />
+        </mat-form-field>
+      </div>
+      <div class="col-md-4" >
+      <mat-form-field class="from-control">
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fecha" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field></div>
+
+     <div class="col-md-4">
+      <mat-form-field >
+        <input matInput placeholder="Nº Vivienda" formControlName="num_vivienda" />
+      </mat-form-field>
+     </div>
+
+      <div class="col-md-4">
+        <mat-form-field>
+        <input matInput placeholder="Nº Hogar" formControlName="num_hogar" />
+      </mat-form-field></div>
 
 
-    <div class="col-md-6">
+    <!--div class="col-md-6">
       <label for="validationCustom03" class="form-label">Nº de vivienda</label>
       <input type="text" class="form-control" name="n_vivienda" placeholder="Introduzca Nº de vivienda" [(ngModel)]="n_vivienda" (ngModelChange)="searchVivienda()">
       <div class="invalid-feedback">
@@ -35,7 +61,7 @@
       <div class="invalid-feedback">
         Por favor ingrese un Nº de hogar válido.
       </div>
-    </div>
+    </div-->
     <!--<div class="col-12">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -48,11 +74,12 @@
       </div>
     </div-->
     <div class="col-12">
-      <button (click)="onSubmit()" class="btn btn-primary" type="submit">Buscar encuesta</button>
+      <button (click)="Search()" class="btn btn-primary" type="submit">Buscar encuesta</button>
     </div>
   </form>
 
 </div>
+<!--pre>{{search.value | json }}</pre-->
 
 <div >
   <nav class="navbar">
@@ -73,8 +100,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let encuesta of encuestas">
-      <td>{{encuesta.id_encuesta}}</td>
-      <td>{{encuesta.user.name + ' ' + encuesta.user.lastname}}</td>
+      <td>{{encuesta.id}}</td>
+      <td>{{encuesta.encuestador}}</td>
       <td>{{encuesta.cod_area}}</td>
       <td>{{encuesta.num_listado}}</td>
       <td>{{encuesta.fecha | date:'dd/MM/yyyy'}}</td>

@@ -1,10 +1,10 @@
 <mat-toolbar color="primary" class="expanded-toolbar">
   <span>
     <img class= "logo" src="https://www.jesusmaria.gov.ar/frontend/images/white-logo.svg" alt>
-    <button mat-button routerLink="/">EPH Jesús María</button>
-    <button mat-button routerLink="/profile"><mat-icon>person</mat-icon></button>
-    <button mat-button routerLink="/dog"><mat-icon>assignment</mat-icon></button>
+    <!--button mat-button routerLink="/">EPH Jesús María</button-->
     <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>
+    <button mat-button routerLink="/nuevaEncuesta"><mat-icon>assignment</mat-icon></button>
+    <button mat-button routerLink="/profile"><mat-icon>person</mat-icon></button>
   </span>
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
     <button mat-button (click)="logout()">
@@ -19,4 +19,4 @@
     Logout
   </button>
 </mat-menu>
-<router-outlet></router-outlet>
+

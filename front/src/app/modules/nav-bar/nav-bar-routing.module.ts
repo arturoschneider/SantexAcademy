@@ -7,12 +7,21 @@ const routes: Routes = [
     path: 'nav-bar',
     component: NavBarComponent,
     children: [
+
     ]
+  },
+  {
+    path:'form',
+    redirectTo: 'form',
+    pathMatch: 'full'
   }
+
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  declarations: [],
+  imports: [RouterModule, RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class NavBarRoutingModule { }

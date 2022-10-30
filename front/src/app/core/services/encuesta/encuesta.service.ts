@@ -14,13 +14,23 @@ export class EncuestaService {
     ) {
   }
 
+  // URLs para el servicio de busqueda y creacion de encuestas.
   url_get:string="instancia/adminEncuestas";
-  url_create:string ="instancia/crearInstancia"
+  url_create:string ="instancia/crearInstancia";
+  url_busqueda:string = "instancia/busquedaEncuestas"
+
+  // Búsqueda de encuestas
   getEncuestas(){
     return this.apiService.get<Encuestas[]>(this.url_get)
   }
+
+  // Crear una nueva encuesta
   createEncuestas(url: string, body:any){
-    return this.http.post(this.url_create, body);
+    return this.apiService.post(this.url_create, body);
   }
 
+  // Búsqueda de encuestas
+  busquedaEncuesta (url:string, body:any){
+    return this.apiService.get<Encuestas[]>(this.url_busqueda, body)
+  }
 }
