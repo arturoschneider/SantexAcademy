@@ -3,9 +3,12 @@
 @include mat-core();
 
 
+*{
+  font-family: Poppins, sans-serif;
+}
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: Poppins, sans-serif;
   background-color: #80808012;
 }
 

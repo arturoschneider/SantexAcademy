@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -50,11 +50,14 @@ import { EncuestaService } from 'src/app/core/services/encuesta/encuesta.service
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    HttpClientModule
+    HttpClientModule,
+    DatePipe
   ],
   exports: [
     DashboardPageComponent
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue:'en-US'}],
 })
-export class DashboardModule {}
+export class DashboardModule {
+
+}

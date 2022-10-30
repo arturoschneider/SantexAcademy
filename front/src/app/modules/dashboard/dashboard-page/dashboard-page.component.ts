@@ -50,21 +50,22 @@ export class DashboardPageComponent implements OnInit{
     this.search = this.formBuilder.group({
       encuestador: new UntypedFormControl(
         null,
-        Validators.compose([Validators.required])
+
       ),
+
       fecha: new UntypedFormControl(
         null,
-        Validators.compose([Validators.required])
+
         ),
 
       num_vivienda: new UntypedFormControl(
         null,
-        Validators.compose([Validators.required])
+
       ),
 
       num_hogar: new UntypedFormControl(
         null,
-        Validators.compose([Validators.required])
+
       ),
     });
   }
@@ -72,10 +73,25 @@ export class DashboardPageComponent implements OnInit{
 
   Search() {
     if (this.search.valid) {
-      const value = this.search.value;
 
-    this.encuestaService.busquedaEncuesta('http://localhost:4001/instancia/busquedaEncuestas', value).subscribe((res)=> {
-      this.encuestas = res;
+    let fechaMal = this.search.value.fecha
+
+    const fechaDay = fechaMal.getDate()
+    const fechamonth = fechaMal.getMonth()
+    const fechaAno = fechaMal.getFullYear()
+
+    const fecha = fechaAno +"-"+(fechamonth+1)+"-"+ fechaDay
+    const value = this.search.value;
+    const object = {
+      "encuestador": value.encuestador,
+      "fecha": fecha,
+      "num_vivienda": value.num_vivienda,
+      "num_hogar": value.num_hogar
+    }
+
+    this.encuestaService.busquedaEncuesta('http://localhost:4001/instancia/busquedaEncuestas', object).subscribe((res)=> {
+    this.encuestas = res;
+      console.log(fecha)
       console.log('Encuesta buscada');
       console.log(res);
 

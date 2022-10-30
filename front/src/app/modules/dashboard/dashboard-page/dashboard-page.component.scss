@@ -4,6 +4,9 @@
   align-items: center;
 }
 
+.btn {
+  background-color: rgb(47, 35, 224);
+}
 #form-container{
   margin: 20px;
   padding: 10px;
@@ -20,22 +23,23 @@
   padding-top: 1rem;
 }
 
-
 .logo {
   background-color: papayawhip;
 }
+
 .row{
   display: flex;
 
 }
 .col, .col-3, .col-2, .col-1 , .col-12{
-
-  margin-left: 10px;
+  margin-left: 10px
 }
+
 .col-md-4 {
   margin-left: 10px;
   padding-left: 10px;
 }
+
 .table {
   margin:10px;
 }

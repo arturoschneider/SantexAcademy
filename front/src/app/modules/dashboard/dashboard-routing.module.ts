@@ -4,7 +4,7 @@ import { DashboardPageComponent } from './dashboard-page/dashboard-page.componen
 
 const routes: Routes = [
   {
-    path: '',
+    path: '**',
     component: DashboardPageComponent,
     children: [
     ]

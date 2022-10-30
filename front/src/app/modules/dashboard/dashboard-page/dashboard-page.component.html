@@ -1,4 +1,4 @@
-<app-nav-bar></app-nav-bar>
+
 <!--div id= "form-container">
   <form class="row g-3 needs-validation" novalidate>
     <div class="col-md-4" id="date--">
@@ -23,8 +23,8 @@
     <div>
     <form [formGroup]="search" class="row g-3 needs-validation" novalidate>
       <h2></h2>
-      <div class="col-md-4">
-        <mat-form-field >
+      <div id= ""class="col-md-4">
+        <mat-form-field>
           <input type="text" matInput placeholder="Nombre Encuestador" formControlName="encuestador" />
         </mat-form-field>
       </div>
@@ -88,14 +88,14 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <td>ID</td>
-      <td>Encuestador</td>
-      <td>Cod Área</td>
-      <td>Nº en listado</td>
-      <td>Fecha</td>
-      <td>Nº Vivienda</td>
-      <td>Nº Hogar</td>
-      <td>ACCIÓN</td>
+      <td><b>ID</b></td>
+      <td><b>Encuestador</b></td>
+      <td><b>Cod Área</b></td>
+      <td><b>Nº en listado</b></td>
+      <td><b>Fecha</b></td>
+      <td><b>Nº Vivienda</b></td>
+      <td><b>Nº Hogar</b></td>
+      <td><b>ACCIÓN</b></td>
     </tr>
   </thead>
   <tbody>
@@ -113,4 +113,4 @@
   </tbody>
 </table>
 </div>
-<router-outlet></router-outlet>
+

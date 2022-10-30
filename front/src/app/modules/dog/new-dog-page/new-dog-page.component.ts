@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EncuestaService } from 'src/app/core/services/encuesta/encuesta.service'
 
 @Component({
@@ -13,8 +14,13 @@ export class NewDogPageComponent {
   public tipoEncuesta = [];
 
 
-  constructor(private formBuilder: UntypedFormBuilder, private datePipe: DatePipe,
-    public encuestaService: EncuestaService,) {}
+  constructor(
+    private formBuilder: UntypedFormBuilder,
+    private datePipe: DatePipe,
+    public encuestaService: EncuestaService,
+    private router: Router,
+    ) {
+    }
 
   ngOnInit(): void {
     this.NuevaEncuestaForm = this.formBuilder.group({
@@ -56,6 +62,7 @@ export class NewDogPageComponent {
       this.encuestaService.createEncuestas('http://localhost:4001/instancia/crearInstancia', value).subscribe((res)=> {
         console.log('Encuesta creada');
         console.log(res);
+        this.router.navigate(['nav-bar', 'form'])
     })
     }
   }

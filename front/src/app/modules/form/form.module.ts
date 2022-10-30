@@ -25,8 +25,9 @@ import { FormRoutingModule } from './form-routing.module';
   ],
   imports: [
     CommonModule,
+    DashboardModule,
+    MatCardModule,
     NavBarModule,
-    FormRoutingModule
   ],
   exports: [
     FormComponent,
