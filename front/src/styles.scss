@@ -11,3 +11,19 @@ body {
 h1 {
   text-align: center;
 }
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color:#dd782e
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color:#dd782e
+}
+
+.mat-input-element {
+  caret-color:#dd782e
+}
+
+.mat-raised-button.mat-primary {
+  background-color:#dd782e
+}
