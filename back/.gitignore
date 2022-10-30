@@ -16,15 +16,15 @@ $RECYCLE.BIN/
 *.log
 log.txt
 npm-debug.log*
-/resources
-/.idea
-/.sass-cache
-/.sourcemaps
-/.versions
-/.vscode
-/coverage
-/dist
-/node_modules
+resources
+.idea
+.sass-cache
+.sourcemaps
+.versions
+.vscode
+coverage
+dist
+node_modules
 .env
-/logs
+logs
 

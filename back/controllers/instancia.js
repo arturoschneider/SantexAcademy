@@ -16,7 +16,15 @@ async function allEncuesta(req, res, next) {
 //Busqueda de encuesta access:admin
 async function encuestasAdmin(req, res, next) {
     try {
-        const body = req.body;
+        const body = {
+          id: req.user.id,
+          encuestador: req.query.encuestador,
+          fecha: req.query.fecha,
+          num_vivienda: req.query.num_vivienda,
+          num_hogar: req.query.num_hogar
+        };
+        console.log('log controller')
+        console.log(body)
         const userEncuesta = await instanciaProvider.busqueda(body)
         res.json(userEncuesta);
     } catch (error) {
