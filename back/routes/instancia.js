@@ -11,6 +11,15 @@ app.get('/busquedaEncuestas',[
     Passport.authenticate('jwt', { session: false }),
   ],instanciaControllers.encuestasAdmin)
 
+//test params
+app.get('/test', (req, res) => {
+  console.log(req.query)
+  return res.json({
+    id: req.query.id
+  })
+  //res.render('encuestador', {persona : req.query.encuestador})
+})
+
 
 //Llamada a todas las encuestas admin:true (trae todas las encuestas), admin:false(trae las encuestas del usuario logeado)
 app.get('/adminEncuestas', [

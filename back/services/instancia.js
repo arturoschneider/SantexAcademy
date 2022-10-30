@@ -13,7 +13,6 @@ async function findAll(data, attributes = null) {
 
     const encuestas = await encuestaModel.findAll( {
       where: {user_id: user.id},
-      limit: 10,
       attributes: {exclude: ['tipo_de_encuesta', 'updatedAt', 'createdAt']},
       include: { model: userModel }
     } );
@@ -42,9 +41,8 @@ async function findAll(data, attributes = null) {
     console.log('Este usuario es admin')
 
     const encuestas = await encuestaModel.findAll( {
-      limit: 10,
       attributes: {exclude: ['tipo_de_encuesta', 'updatedAt', 'createdAt']},
-      include: { model: userModel }
+      include: { model: userModel },
     } );
 
   //console.log(0)
@@ -85,7 +83,7 @@ async function busquedaFind(data, attributes = null) {
 
   if(!encuestador) {
     return console.log('El encuestador', data.encuestador, 'no existe')
-  }
+  };
 
   const x = {
     id:encuestador.id,
@@ -97,17 +95,16 @@ async function busquedaFind(data, attributes = null) {
 
 
   //El encuestador, tiene instancias?
-  const encuestadorExist = await encuestaModel.findOne( {
+  const encuestadorExist = await encuestaModel.findAll( {
     where: {
         user_id: x.id 
     }
   } );
 
-  if(!encuestadorExist) {
+  if(encuestadorExist) {
     return console.log('El encuestador, no posee instancias')
   };
-  
-  
+
 
   //Que instancia debo buscar? 
     const filtros = {
@@ -119,13 +116,13 @@ async function busquedaFind(data, attributes = null) {
   
     if (data.num_hogar) {
       filtros.num_hogar = data.num_hogar
-    } 
+    }; 
     if (data.num_vivienda) {
       filtros.num_vivienda = data.num_vivienda
-    }
+    };
     if (data.fecha) {
       filtros.fecha = data.fecha
-    }
+    };
 
     const datefecha = data.fecha;
 
@@ -138,9 +135,8 @@ async function busquedaFind(data, attributes = null) {
       attributes,
       include: { model: userModel }
     } );
+
  
-
-
     //La instancia que se me pide, existe?
     if(encuestas) {
       encuestas.forEach(x => {
