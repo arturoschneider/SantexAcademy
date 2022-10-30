@@ -101,7 +101,7 @@ async function busquedaFind(data, attributes = null) {
     }
   } );
 
-  if(encuestadorExist) {
+  if(!encuestadorExist) {
     return console.log('El encuestador, no posee instancias')
   };
 
@@ -124,6 +124,7 @@ async function busquedaFind(data, attributes = null) {
       filtros.fecha = data.fecha
     };
 
+    //Extraer dd/MM/yyyy
     const datefecha = data.fecha;
 
     const encuestas = await encuestaModel.findAll( {
@@ -136,12 +137,14 @@ async function busquedaFind(data, attributes = null) {
       include: { model: userModel }
     } );
 
+    console.log(encuestas)
+
  
     //La instancia que se me pide, existe?
     if(encuestas) {
       encuestas.forEach(x => {
         arrayEncuesta.push({
-          id:x.id,
+          id:x.id_encuesta,
           encuestador: x.user.name + ' ' + x.user.lastname,
           cod_area: x.cod_area,
           num_listado: x.num_listado,

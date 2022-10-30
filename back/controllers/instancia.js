@@ -23,8 +23,6 @@ async function encuestasAdmin(req, res, next) {
           num_vivienda: req.query.num_vivienda,
           num_hogar: req.query.num_hogar
         };
-        console.log('log controller')
-        console.log(body)
         const userEncuesta = await instanciaProvider.busqueda(body)
         res.json(userEncuesta);
     } catch (error) {
