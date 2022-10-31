@@ -85,28 +85,106 @@ async function busquedaFind(data, attributes = null) {
     return console.log('El encuestador', data.encuestador, 'no existe')
   };
 
-  const x = {
-    id:encuestador.id,
-    name:encuestador.name,
-    lastname:encuestador.lastname,
-    email:encuestador.email,
-    phone:encuestador.phone_number
-  }
-
-
-  //El encuestador, tiene instancias?
-  const encuestadorExist = await encuestaModel.findAll( {
+  //El usuario es admin?
+  const userAdmin = await userModel.findOne( {
     where: {
-        user_id: x.id 
+      id: data.id
     }
   } );
 
-  if(!encuestadorExist) {
-    return console.log('El encuestador, no posee instancias')
-  };
+  if(userAdmin.rol) {
 
+    const x = {
+      id:encuestador.id,
+      name:encuestador.name,
+      lastname:encuestador.lastname,
+      email:encuestador.email,
+      phone:encuestador.phone_number
+    }
+  
+  
+    //El encuestador, tiene instancias?
+    const encuestadorExist = await encuestaModel.findAll( {
+      where: {
+          user_id: x.id 
+      }
+    } );
+  
+    if(!encuestadorExist) {
+      return console.log('El encuestador, no posee instancias')
+    };
+  
+  
+    //Que instancia debo buscar? 
+      const filtros = {
+        user_id:x.id,
+        fecha: null,
+        num_hogar: null,
+        num_vivienda: null
+      }; 
+    
+      if (data.num_hogar) {
+        filtros.num_hogar = data.num_hogar
+      }; 
+      if (data.num_vivienda) {
+        filtros.num_vivienda = data.num_vivienda
+      };
+      if (data.fecha) {
+        filtros.fecha = data.fecha
+      };
+  
+      //Extraer dd/MM/yyyy
+      const datefecha = data.fecha;
+  
+      const encuestas = await encuestaModel.findAll( {
+        where: {
+            fecha: { [Op.substring]: datefecha },
+            [Op.or]: [{user_id: filtros.user_id},{num_hogar: filtros.num_hogar},{num_vivienda: filtros.num_vivienda},] 
+        },
+        tapToModel:true,
+        attributes,
+        include: { model: userModel }
+      } );  
+   
+      //La instancia que se me pide, existe?
+      if(encuestas) {
+        encuestas.forEach(x => {
+          arrayEncuesta.push({
+            id:x.id_encuesta,
+            encuestador: x.user.name + ' ' + x.user.lastname,
+            cod_area: x.cod_area,
+            num_listado: x.num_listado,
+            fecha: x.fecha,
+            num_vivienda: x.num_vivienda,
+            num_hogar: x.num_hogar})
+        });
+  
+        return arrayEncuesta
+      } else {
+        console.log('Encuesta inexistente')
+      }
+    
+  } else {
+    const x = {
+      id:userAdmin.id,
+      name:userAdmin.name,
+      lastname:userAdmin.lastname,
+      email:userAdmin.email,
+      phone:userAdmin.phone_number
+    }
 
-  //Que instancia debo buscar? 
+    //El encuestador, tiene instancias?
+    const encuestadorExist = await encuestaModel.findAll( {
+      where: {
+          user_id: x.id 
+      }
+    } );
+  
+    if(!encuestadorExist) {
+      return console.log('El encuestador, no posee instancias')
+    };
+
+    //Que instancia debo buscar? 
     const filtros = {
       user_id:x.id,
       fecha: null,
@@ -129,17 +207,14 @@ async function busquedaFind(data, attributes = null) {
 
     const encuestas = await encuestaModel.findAll( {
       where: {
-          fecha: { [Op.substring]: datefecha },
-          [Op.or]: [{user_id: filtros.user_id},{num_hogar: filtros.num_hogar},{num_vivienda: filtros.num_vivienda},] 
+          user_id: filtros.user_id,
+          fecha: { [Op.substring]: datefecha }
       },
       tapToModel:true,
       attributes,
       include: { model: userModel }
     } );
 
-    console.log(encuestas)
-
- 
     //La instancia que se me pide, existe?
     if(encuestas) {
       encuestas.forEach(x => {
@@ -156,7 +231,9 @@ async function busquedaFind(data, attributes = null) {
       return arrayEncuesta
     } else {
       console.log('Encuesta inexistente')
-    }    
+    }
+  }
+      
 }
 
 //Devulve solo las encuestas del usuario access:user (en desuso 22/10/2022)
